@@ -1,9 +1,8 @@
-from collections import deque
 from itertools import combinations
 
 def solution(relation):
     n_row=len(relation)
-    n_col=len(relation[0])  #->runtime error 우려되는 부분
+    n_col=len(relation[0]) 
 
     candidates=[]
     for i in range(1,n_col+1):
@@ -30,7 +29,7 @@ def solution(relation):
             # if len(final[i]) == len(set(final[i]).intersection(set(final[j]))):
             if set(final[i]) & set(final[j]) == set(final[i]): #교집합이 존재하면 후보키에서 제외한다.
                 print(set(final[i]) & set(final[j]))
-                answer.discard(final[j]) #집합 제거 함수 -> 여기서 remove함수 쓰면 keyError난다. 주의!! 
+                answer.discard(final[j]) #집합 제거 함수 -> 여기서 remove함수 쓰면 keyError난다. 주의!!
     print(answer)
 
 
