@@ -1,7 +1,3 @@
-#아이디어
-# 1. 일단 그래프를 만든다.
-# 2. 그래프를 탐색하여 사이클을 찾으면 +1을 한다.
-# if __name__ == "__main__":
 import sys
 
 testcase = int(input())
@@ -16,7 +12,7 @@ for _ in range(testcase): #2개
 
         # idx:          1 2 3 4 5 6 7 8
         # sequential: 0 3 2 7 8 1 4 5 6
-        # visit:      0 1 1 1 0 1 0 1 0
+        # visit:      0 0 0 0 0 0 0 0 0
 
         for idx in range(1, n+1): #1~n까지
             i = idx
