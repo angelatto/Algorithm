@@ -16,9 +16,9 @@ for _ in range(testcase): #2개
 
         for idx in range(1, n+1): #1~n까지
             i = idx
-            if visit[i] == 0: #처음 방문한 것이면
+            if visit[i] == 0: #처음 방문한 것이면 visit가 0일때
                 cnt += 1
-            else:
+            else:  # visit배열이 이미 1일 때
                 continue
 
             while not visit[i]: #방문안했다면...사이클 최대한 돌아서 방문표시하기
