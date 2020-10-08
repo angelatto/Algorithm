@@ -1,6 +1,6 @@
 def solution(info, query):
     answer = []
-#정확성은 ok이지만 효율성이 zero임
+#효율성 
     people = len(info)
     all_info = []
     for person in info:
