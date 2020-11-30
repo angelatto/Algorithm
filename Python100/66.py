@@ -1,38 +1,19 @@
-# top = ["ABCDEF", "BCAD", "ADEFQRX", "BEDFG"]
-# rule = "ABD"
-#
-# result = []
-# flag = 1
-# for block in top:
-#     temp = rule.index(rule[0])
-#     for b in block:
-#         if b in rule: # 인덱스 위치 비교
-#             if temp > rule.index(b):
-#                 result.append("불가능")
-#                 flag = 0
-#                 continue
-#             temp = rule.index(b)
-#
-#     if flag == 1:
-#         result.append("가능")
-#
-# print(result)
-def solution(전체블록, 규칙):
+top =  ['ABCDEF', 'BCAD', 'ADEFQRX', 'BEDFG', 'AEBFDGCH']
+rule = 'ABCD'
+
+def solution(top, rule):
     answer = []
-    for 부분블록 in 전체블록:
-        answer.append(블록순서체크(부분블록, 규칙))
+    for block in top:
+        answer.append(check(block, rule))
     return answer
 
-def 블록순서체크(부분블록, 규칙):
-    임시변수 = 규칙.index(규칙[0])
-    for 문자 in 부분블록:
-        if 문자 in 규칙:
-            if 임시변수 > 규칙.index(문자):
+def check(block, rule):
+    temp = 0 # 항상 rule의 첫 인덱스로 초기화
+    for b in block:
+        if b in rule:
+            if temp > rule.index(b):
                 return '불가능'
-            임시변수 = 규칙.index(문자)
+            temp = rule.index(b)
     return '가능'
 
-전체블록 = ['ABCDEF', 'BCAD', 'ADEFQRX', 'BEDFG', 'AEBFDGCH']
-규칙 = 'ABCD'
-
-print(solution(전체블록, 규칙))
+print(solution(top, rule))
