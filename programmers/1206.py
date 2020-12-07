@@ -1,42 +1,47 @@
 import collections
-import heapq
-# bfs로 풀면 테케1번이 런타임에러가 난다. -> 이문제는 dfs로 푸는게 훨씬 쉬움.
-
+# bfs로 풀면 테케1번이 런타임에러가 난다. -> 이 문제는 dfs로 푸는게 훨씬 쉬움.
 def solution(tickets):
-    answer = []
-
-    flights = collections.defaultdict(list)
+    #그래프 만들기
+    graph = collections.defaultdict(list)
     for t in tickets:
-        heapq.heappush(flights[t[0]], t[1])
+        graph[t[0]].append(t[1])
+    print(graph)
 
-    now = 'ICN'
-    answer.append(now)
+    # 그래프 알파벳 순으로 정렬
+    for g in graph:
+        graph[g].sort()
+    print(graph)
 
-    count = 0
-    while count != len(tickets):
-        print(flights)
-        print(now, flights[now])
-        candidate = flights[now][0]
-        if candidate not in flights and len(tickets)-count != 1: # alt를 sfo 뒤로 보낸다 / 마지막 순서가 아니어야함
-            heapq.heappop(flights[now])
-            tmp = now
-            now = heapq.heappop(flights[now])
-            answer.append(now)
-            count += 1
-
-            heapq.heappush(flights[tmp], candidate)
-            # flights[now].append(candidate)
-        else:
-            now = heapq.heappop(flights[now])
-            answer.append(now)
-            count += 1
+    #--main--시작정점: ICN
+    N = len(tickets)
+    answer = dfs(graph, N, 'ICN', ['ICN'])
     return answer
 
-# print(solution([['ICN', 'A'], ['A', 'C'], ['A', 'D'], ['D', 'B'], ['B', 'A']]))
+def dfs(graph, N, v, footprint):
+    print(footprint)
 
+    if len(footprint) == N+1: # 종료조건
+        return footprint
+
+    for index, country in enumerate(graph[v]):
+        graph[v].pop(index)
+
+        tmp = footprint[:]
+        tmp.append(country)
+        ret = dfs(graph, N, country, tmp)
+
+        if ret:
+            return ret
+        else:
+            print(graph)
+            graph[v].insert(index, country) # 다시 반복문 돌아야함. 원상복귀해줌
+            print(graph)
+
+
+print(solution([['ICN', 'A'], ['A', 'C'], ['A', 'D'], ['D', 'B'], ['B', 'A']]))
 # print(solution([['ICN', 'SFO'], ['ICN', 'ATL'], ['SFO', 'ATL'],
 #  ['ATL', 'ICN'], ['ATL','SFO']]))
 # print(solution([['ICN', 'A'], ['ICN', 'B'], ['B', 'ICN']]))
 # print(solution([['ICN','B'], ['ICN', 'C'] ,['C', 'D'], ['D', 'ICN']]))
 # print(solution( [['ICN','A'],['ICN','A'],['A','ICN']]))
-print(solution([['ICN', 'A'], ['ICN', 'B'], ['A', 'D'], ['D', 'C'], ['C', 'ICN']]))
+# print(solution([['ICN', 'A'], ['ICN', 'B'], ['B', 'D'], ['D', 'C'], ['C', 'ICN']]))
