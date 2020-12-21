@@ -4,7 +4,6 @@
 # 백준 입력
 n = int(input())
 graph = [[*map(int, input().split())] for _ in range(n)]
-print(solution(n, graph))
 
 def solution(n, graph):
     dx = [0,1,1]
@@ -21,17 +20,18 @@ def solution(n, graph):
     def moveNext(next_u, next_v):
         if next_v[0] >= n or next_v[1] >= n:
             return False
-        if graph[next_u[0]][next_u[1]] == 1 or graph[next_v[0]][next_v[1]] == 1:
+        if graph[next_v[0]][next_v[1]] == 1:
             return False
         return True
 
     def dfs(u, v):
         global count
-        # print('u: ', '(', u[0], u[1],')', ' v:', '(', v[0], v[1], ')')
+        print('u: ', '(', u[0], u[1],')', ' v:', '(', v[0], v[1], ')')
 
         # 1. 종료조건
         if v[0] == v[1] == n-1:
             count += 1
+            return
             # print('도착함, 카운트 1증가해야함', count)
 
         # 2. status 파악 : 가로-0, 세로-1, 대각선-2
@@ -43,7 +43,8 @@ def solution(n, graph):
             next_v = [v[0], v[1]+1]
             if moveNext(next_u, next_v):
                 dfs(next_u, next_v)
-
+            else:
+                return
             # print('가로->대각선')
             next_u = [u[0], u[1]+1]
             next_v = [v[0]+1, v[1]+1]
@@ -56,7 +57,8 @@ def solution(n, graph):
             next_v = [v[0]+1, v[1]]
             if moveNext(next_u, next_v):
                 dfs(next_u, next_v)
-
+            else:
+                return
             # print('세로->대각선')
             next_u = [u[0]+1, u[1]]
             next_v = [v[0]+1, v[1]+1]
@@ -67,14 +69,15 @@ def solution(n, graph):
             # print('대각선->가로')
             next_u = [u[0]+1, u[1]+1]
             next_v = [v[0], v[1]+1]
-            if moveNext(next_u, next_v):
+            if moveNext(next_u, next_v) and graph[u[0]+1][u[1]] == 0:
                 dfs(next_u, next_v)
 
             # print('대각선->세로')
             next_u = [u[0]+1, u[1]+1]
             next_v = [v[0]+1, v[1]]
-            if moveNext(next_u, next_v):
+            if moveNext(next_u, next_v) and graph[u[0]][u[1]+1] == 0:
                 dfs(next_u, next_v)
+
 
             # print('대각선->대각선')
             next_u = [u[0]+1, u[1]+1]
@@ -82,19 +85,21 @@ def solution(n, graph):
             if moveNext(next_u, next_v):
                 dfs(next_u, next_v)
 
-        # print('count : ', count)
-        return count
+        print('count : ', count)
+
 
     # --main--
     global count
     count = 0
-    answer = dfs([0,0], [0,1]) # start
-    return answer #방법이 없으면 0
+    dfs([0,0], [0,1]) # start
+    return count #방법이 없으면 0
 
+# baekjoon
+print(solution(n, graph))
 
 
 # test case
 # print(solution(3, [[0,0,0], [0,0,0], [0,0,0]]))
 # print(solution(4, [[0,0,0,0], [0,0,0,0],[0,0,0,0], [0,0,0,0]]))
 # print(solution(5, [[0,0,1,0,0], [0,0,0,0,0], [0,0,0,0,0], [0,0,0,0,0], [0,0,0,0,0]]))
-# print(solution(6, [[0,0,0,0,0,0], [0,1,0,0,0,0], [0,0,0,0,0,0], [0,0,0,0,0,0], [0,0,0,0,0,0]]))
+# print(solution(6, [[0,0,0,0,0,0], [0,1,0,0,0,0], [0,0,0,0,0,0], [0,0,0,0,0,0], [0,0,0,0,0,0], [0,0,0,0,0,0]]))
