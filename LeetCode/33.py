@@ -9,7 +9,7 @@ def search(nums, target: int) -> int:
     if not nums:
         return -1
 
-    # 이진탐색으로 최솟값을 찾아 피벗 설정
+    # 이진 검색으로 최솟값을 찾아 피벗 설정
     left, right = 0, len(nums) - 1
     while left < right:
         mid = left + (right-left) // 2
