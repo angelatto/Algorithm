@@ -11,6 +11,11 @@ def numIslands(grid):
         dfs(i, j-1)
         dfs(i, j+1)
 
+# 문자열로 바꾸기
+    for i in range(len(grid)):
+        for j in range(len(grid[0])):
+            grid[i][j] = str(grid[i][j])
+    print(grid)
 
     count = 0 # 섬의 개수
     for i in range(len(grid)):
@@ -23,9 +28,10 @@ def numIslands(grid):
 
 
 
-print(numIslands([
-  ["1","1","0","0","0"],
-  ["1","1","0","0","0"],
-  ["0","0","1","0","0"],
-  ["0","0","0","1","1"]
-]))
+# print(numIslands([
+#   ["1","1","0","0","0"],
+#   ["1","1","0","0","0"],
+#   ["0","0","1","0","0"],
+#   ["0","0","0","1","1"]
+# ]))
+print(numIslands([[1,1,1,1],[1,1,1,1],[2,2,2,1],[1,1,1,2]]))
