@@ -1,4 +1,5 @@
 import heapq
+
 def solution(n, board):
     answer = 0
     li = [i for i in range(1, n*n+1)]
@@ -11,7 +12,7 @@ def solution(n, board):
         queue = [(0, i, j)] # 새로운 값을 찾기 시작할 때 count(커서이동횟수)는 항상 0으로 초기화
 
         while queue:
-            count, i, j = queue.pop(0) # 현재 위치
+            count, i, j = heapq.heappop(queue)  #queue.pop(0) # 현재 위치
 
             if board[i][j] == li[0]: # 현재위치와 찾는 값이 같으면
                 li.remove(board[i][j])
