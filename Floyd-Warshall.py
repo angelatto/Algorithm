@@ -1,6 +1,8 @@
 import sys
 
 INF = sys.maxsize
+# programmers - 1208.py 참고
+# 경유지 정점을 기록하는 것까지 해보기
 
 def floyd(n, graph):
 
@@ -18,7 +20,7 @@ n = 4 # 정점 개수
 graph = [[0,2,INF,4], [2,0,INF,5], [3,INF,0,INF], [INF,2,1,0]]
 # 원래는 그래프도 직접 만들어줘야 하는데 간선이 없으면 INF,i==j이면 0으로 초기화해준다.
 
-# 결과
+# 그래프 출력
 for i in range(n):
     for j in range(n):
         if graph[i][j] == INF:
