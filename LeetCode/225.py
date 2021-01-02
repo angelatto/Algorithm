@@ -4,7 +4,7 @@ class MyStack:
         """
         Initialize your data structure here.
         """
-        self.q = collections.deque()
+        self.q = collections.deque() #큐를 구현
 
     def push(self, x: int) -> None:
         """
