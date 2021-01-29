@@ -18,7 +18,7 @@ def init_list():
 def delete_node(del_data):
     global node_A
     pre_node = node_A
-    next_node = pre_node.next
+    next_node = pre_node.n_dir
 
     if pre_node.data == del_data:
         node_A = next_node
@@ -27,11 +27,11 @@ def delete_node(del_data):
 
     while next_node:
         if next_node.data == del_data:
-            pre_node.next = next_node.next
+            pre_node.n_dir = next_node.n_dir
             del next_node
             break
         pre_node = next_node
-        next_node = next_node.next
+        next_node = next_node.n_dir
 
 
 def insert_node(data):
