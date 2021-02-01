@@ -5,28 +5,6 @@
 아이디어 : 자신보다 키가 큰 사람이 오면 자신은 더 이상 그 다음 사람을 볼 수 없으므로 pop()
 - 즉, 스택 제일 아래 저장되어 있는 키부터 내림차순을 유지해야 한다.
 """
-# N = int(input())
-# stack = []
-# ans = 0
-# for _ in range(N):
-#     x = int(input())
-#
-#     while stack and stack[-1][0] < x:  # 자신보다 큰 값이 들어오면
-#         ans += stack.pop()[1]
-#
-#     if stack and stack[-1][0] == x:  # 자신과 같은 값이 들어오면
-#         cnt = stack.pop()[1]
-#         ans += cnt
-#         if len(stack) != 0:
-#             ans += 1
-#         stack.append((x, cnt+1))
-#     else:
-#         if len(stack) != 0:
-#             ans += 1
-#         stack.append((x, 1))
-# print(ans)
-
-# sol-2
 N = int(input())
 stack = []
 ans = 0
