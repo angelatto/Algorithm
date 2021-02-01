@@ -11,7 +11,7 @@ while True:
     heights.insert(0, 0)
     # 마지막 사각형 계산을 위해 0을 끝에 추가합니다.
     heights.append(0)
-    checked = [0]  # 신경써야할 인덱스
+    stack = [0]  # 신경써야할 인덱스
     area = 0
 
     # 자신보다 낮은 높이가 들어오면, while에 진입합니다.
@@ -21,11 +21,11 @@ while True:
     for i in range(1, n + 2):
         # heights[checked[-1]]은 이전 시점의 사각형 높이
         # heights[i]는 현재 시점의 사각형 높이
-        # heights[checked[-1]] > heights[i]는 자신보다 낮은 높이가 들어올 때
-        while checked and (heights[checked[-1]] > heights[i]):
+        # heights[checked[-1]] > heights[i]는 자신보다 낮은 높이가 들어오면 자신의 높이로 확장할 수 없으므로
+        while stack and (heights[stack[-1]] > heights[i]):
             # 비교할 사각형 index
-            cur_height = checked.pop()
+            cur_height = stack.pop()
             # (i - 1 - checked[-1])은 가로 길이
-            area = max(area, (i - 1 - checked[-1]) * heights[cur_height])
-        checked.append(i)
+            area = max(area, (i - 1 - stack[-1]) * heights[cur_height])
+        stack.append(i)
     print(area)
