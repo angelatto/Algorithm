@@ -4,15 +4,15 @@ class Solution:
         slow = fast = head
 
         # 런너를 이용해 역순 연결 리스트인 rev를 구성
-        while fast and fast.next:
-            fast = fast.next.next
-            rev, rev.next, slow = slow, rev, slow.next
+        while fast and fast.n_dir:
+            fast = fast.n_dir.n_dir
+            rev, rev.n_dir, slow = slow, rev, slow.n_dir
 
         if fast:
-            slow = slow.next
+            slow = slow.n_dir
 
         # 펠린드롬 여부 확인
         while rev and rev.val == slow.val:
-            slow, rev = slow.next, rev.next
+            slow, rev = slow.n_dir, rev.next
 
         return not rev
