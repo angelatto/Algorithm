@@ -15,7 +15,7 @@ class Solution:
         # 연결리스트를 데크로 변환
         while node is not None:
             q.append(node.val)
-            node = node.next
+            node = node.n_dir
 
         # 펠린드롬 판별
         while len(q) > 1:
