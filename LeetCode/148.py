@@ -5,7 +5,7 @@ class Solution:
         lst = []
         while p:
             lst.append(p.val)
-            p = p.next
+            p = p.n_dir
 
         # 정렬
         lst.sort()
@@ -14,5 +14,5 @@ class Solution:
         p = head
         for i in range(len(lst)):
             p.val = lst[i]
-            p = p.next
+            p = p.n_dir
         return head
