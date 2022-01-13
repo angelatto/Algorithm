@@ -1,14 +1,14 @@
 """
-실버2
 01.09.22
+실버2
 
-
-4 5 1
+# 정점, 간선, 시작점
+5 5 3
+5 4
+5 2
 1 2
-1 3
-1 4
-2 4
 3 4
+3 1
 
 """
 import sys
@@ -26,7 +26,6 @@ def dfs(graph, v, visited):
     for i in graph[v]:
         if not visited[i]:
             dfs(graph, i, visited)
-
 
 # bfs
 def bfs(graph, start, visited):
@@ -48,7 +47,6 @@ def bfs(graph, start, visited):
                 queue.append(i)
                 visited[i] = True
 
-
 # main
 # 정점 , 간선 개수 , 시작점
 n, m, v = map(int, sys.stdin.readline().split())
@@ -59,12 +57,8 @@ for _ in range(m):
     graph[x].append(y)
     graph[y].append(x)
 
-
-# print(graph)
 for g in graph:
     g.sort()
-# print(graph)
-
 
 # # 각 노드가 방문된 정보를 리스트 자료형으로 표현(1차원 리스트)
 visited = [False] * (n+1)
